@@ -28,7 +28,7 @@ if test $? -eq 128
     then
         echo $BRANCH
     else
-        REPO=$(git config --get remote.origin.url | sed 's/\.git//' | sed 's/\git\@github.com:/https\:\/\/www.github.com\//')
+        REPO=$(git config --get remote.origin.url | sed -e 's/\.git//' -e 's#git@github.com:#https://www.github.com/#')
         git push --set-upstream origin $BRANCH
         "$openCmd" $REPO/compare/$BRANCH?expand=1
 fi
